@@ -1,3 +1,4 @@
+import 'package:expense/widgets/chart/chart.dart';
 import 'package:expense/widgets/new_expense.dart';
 import 'package:flutter/material.dart';
 
@@ -112,7 +113,8 @@ class _ExpensesState extends State<Expenses> {
     if(_registeredExpenses.isNotEmpty){
       mainContent = Column(
         children: [
-          const Text("The chart"),
+          const SizedBox(height: 22),
+          Chart(expenses: _registeredExpenses),
           Expanded(child: ExpensesList(expenses: _registeredExpenses, onRemoveExpense: _removeExpense),),
         ],
       );
