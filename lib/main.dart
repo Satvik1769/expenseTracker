@@ -9,6 +9,11 @@ var kColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 150, 84, 220),
 );
 
+var kColorDarkScheme = ColorScheme.fromSeed(
+  brightness: Brightness.dark,
+  seedColor: const Color.fromARGB(255, 5, 99, 125),
+);
+
 class MyApp extends StatelessWidget {
    const MyApp({super.key});
 
@@ -17,6 +22,24 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      darkTheme: ThemeData.dark().copyWith(
+        colorScheme: kColorDarkScheme,
+        appBarTheme: AppBarTheme(
+          // backgroundColor: kColorDarkScheme.onPrimaryContainer,
+        ),
+        cardTheme: CardThemeData(
+          color: kColorDarkScheme.secondaryContainer,
+          margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: kColorDarkScheme.primaryContainer,
+              foregroundColor: kColorDarkScheme.onPrimaryContainer,
+            )
+        ),
+
+      ),
+      // themeMode: ThemeMode.system,  this is default
       theme: ThemeData(
         colorScheme: kColorScheme,
         appBarTheme: AppBarTheme(
