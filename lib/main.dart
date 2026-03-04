@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         ),
         textTheme: TextTheme(
           titleLarge: TextStyle(
-            fontWeight: FontWeight.normal,
+            fontWeight: FontWeight.bold,
             color: kColorScheme.onSecondaryContainer,
             fontSize: 18,
           )
