@@ -1,7 +1,15 @@
 import 'package:expense/widgets/expenses.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  // to make it static
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp,]).then((func){
+  //   runApp( const MyApp());
+  // });
+
+
   runApp( const MyApp());
 }
 
