@@ -106,19 +106,11 @@ class _ExpensesState extends State<Expenses> {
   @override
   Widget build(BuildContext context) {
 
-    Widget mainContent = const Center(
-      child: Text('No expenses found. Start adding some!'),
-    );
+    final isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
 
-    if(_registeredExpenses.isNotEmpty){
-      mainContent = Column(
-        children: [
-          const SizedBox(height: 22),
-          Chart(expenses: _registeredExpenses),
-          Expanded(child: ExpensesList(expenses: _registeredExpenses, onRemoveExpense: _removeExpense),),
-        ],
-      );
-    };
+    Widget expensesList = _registeredExpenses.isEmpty
+        ? const Center(child: Text('No expenses found. Start adding some!'))
+        : ExpensesList(expenses: _registeredExpenses, onRemoveExpense: _removeExpense);
 
     return Scaffold(
       appBar: AppBar(
@@ -127,7 +119,20 @@ class _ExpensesState extends State<Expenses> {
           IconButton(onPressed: _openAddExpenseOverlay, icon: const Icon(Icons.add))
         ],
       ),
-      body: mainContent
+      body: isLandscape
+          ? Row(
+              children: [
+                Expanded(child: Chart(expenses: _registeredExpenses)),
+                Expanded(child: expensesList),
+              ],
+            )
+          : Column(
+              children: [
+                const SizedBox(height: 22),
+                Chart(expenses: _registeredExpenses),
+                Expanded(child: expensesList),
+              ],
+            ),
     );
   }
   
